@@ -28,3 +28,20 @@ void Graduate::print()const
 	Student::print();
 	cout << subject << endl;
 }
+std::ostream& Graduate::print(std::ostream& out)const
+{
+	return Student::print(out) << " " << subject;
+}
+
+std::ofstream& Graduate::print(std::ofstream& out)const
+{
+	Student::print(out);
+	out << subject;
+	return out;
+}
+std::ifstream& Graduate::scan(std::ifstream& in)
+{
+	Student::scan(in);
+	std::getline(in, subject);
+	return in;
+}

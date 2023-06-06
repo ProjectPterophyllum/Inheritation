@@ -41,8 +41,28 @@ void main()
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++) delete group[i];
 #endif // POLYMORPHISM
 #ifdef TO_TEXT_FILE
-
-
+	Human* group[] =
+	{
+	new Student("Angelo", "Tomas", 27, "Passenger Transportation", "SalieriTeam", 95, 100),
+	new Teacher("Yoshida", "Shoyo", 999, "Bushido", 10),
+	new Graduate("Sakata", "Gintoki", 29, "MartialArts/Kenjutsu", "Yorozuya", 100, 70, "How to be a Great Samurai"),
+	new Student("Marley", "Robert", 30, "Biology", "JahRastafari", 100, 100),
+	new Teacher("Cooper", "Sheldon", 25, "Theorethical Physics", 20),
+	new Graduate("Friman", "Gordon", 27, "Theorethical Physics", "VALVE_HL", 100, 100, "How to teleport safety, without any issues"),
+	new Graduate("Menethil", "Arthas", 22, "Theology", "Warriors of Light", 20, 100, "How to cure the plague with the sacred hammer"),
+	new Teacher("Ner'","Zul", 60, "Shamanism", 30)
+	};
+	printGroup(group, sizeof(group) / sizeof(group[0]));
+	save(group, sizeof(group) / sizeof(group[0]), "Group.txt");
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++) delete group[i];
 #endif // TO_TEXT_FILE
+#ifdef OUT_OF_TEXT_FILE
+	int n = 0;
+	Human** Group = read("Group.txt", n);
+	printGroup(Group, n);
+	for (int i = 0; i < n; i++) delete Group[i];
+	delete[] Group;
+	Group = nullptr;
+#endif // OUT_OF_TEXT_FILE
 
 }

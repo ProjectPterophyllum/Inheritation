@@ -6,8 +6,8 @@
 class Student : public Human
 {
 	//static constant members:
-	static const int SPECIALITY_WIDTH = 23;
-	static const int GROUP_WIDTH = 20;
+	static const int SPECIALITY_WIDTH = 26;
+	static const int GROUP_WIDTH = 18;
 	static const int RATING_WIDTH = 8;
 	static const int ATTENDANCE_WIDTH = 8;
 	//class members:

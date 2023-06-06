@@ -1,4 +1,12 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
+
+void printGroup(Human** group, const int n)
+{
+	delimiter;
+	for (int i = 0; i < n; i++)
+		cout << *group[i] << endl << endl;
+	delimiter;
+}
 
 Human* HumanFactory(const std::string& type)
 {
@@ -16,8 +24,8 @@ void save(Human** group, const int n, const char* filename)
 		fout << *group[i] << endl;
 	}
 	fout.close();
-	char cmmd[FILENAME_MAX] = "notepad ";
-	strcat(cmmd, filename);
+	char cmmd[FILENAME_MAX] = "start notepad ";
+	strcat_s(cmmd, filename);
 	system(cmmd);
 }
 Human** read(const std::string& filename, int& count)

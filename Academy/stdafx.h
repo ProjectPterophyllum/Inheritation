@@ -13,8 +13,9 @@ using std::endl;
 #define tab "\t"
 #define delimiter cout << "\n------------------------------------------------\n"
 //#define INHERITANCE_CHECK
-#define POLYMORPHISM
-#define TO_TEXT_FILE
+//#define POLYMORPHISM
+//#define TO_TEXT_FILE
+#define OUT_OF_TEXT_FILE
 //#define HDEBUG
 //#define SDEBUG
 //#define TDEBUG

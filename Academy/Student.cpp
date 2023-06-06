@@ -57,7 +57,7 @@ void Student::print()const
 	Human::print();
 	cout << speciality << " " << group << " " << rating << " " << attendance << endl;
 }
-std::ostream& Student:: print(std::ostream& out) const
+std::ostream& Student::print(std::ostream& out) const
 {
 	return Human::print(out) << speciality << " " << group << " " << rating << " " << attendance;
 }
@@ -77,12 +77,18 @@ std::ofstream& Student::print(std::ofstream& out) const
 std::ifstream& Student::scan(std::ifstream& in)
 {
 	Human::scan(in);
-	char buffer[SPECIALITY_WIDTH + 1] = {};
-	in.read(buffer, SPECIALITY_WIDTH);
-	for (int i = strlen(buffer) - 1; buffer[i] == ' '; i--)			buffer[i] = 0;
-	while (buffer[0] == ' ')for (int i = 0; buffer[i]; i++)		buffer[i] = buffer[i + 1];
-	speciality = buffer;
-	in >> group;
+	char* spec = new char[SPECIALITY_WIDTH + 1] {};
+	in.read(spec, SPECIALITY_WIDTH);
+	for (int i = strlen(spec) - 1; spec[i] == ' '; i--)	spec[i] = 0;
+	while (spec[0] == ' ')for (int i = 0; spec[i]; i++)	spec[i] = spec[i + 1];
+	speciality = spec;
+	delete[] spec;
+	char* grp = new char[GROUP_WIDTH + 1] {};
+	in.read(grp, GROUP_WIDTH);
+	for (int i = strlen(grp) - 1; grp[i] == ' '; i--)			grp[i] = 0;
+	while (grp[0] == ' ')for (int i = 0; grp[i]; i++)		grp[i] = grp[i + 1];
+	group = grp;
+	delete[] grp;
 	in >> rating >> attendance;
 	return in;
 }
