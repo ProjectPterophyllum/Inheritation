@@ -1,6 +1,5 @@
 #pragma once
 #include "stdafx.h"
-#include "Student.h"
 
 class Graduate :public Student
 {

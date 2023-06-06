@@ -1,8 +1,4 @@
 #include "stdafx.h"
-#include "Human.h"
-#include "Student.h"
-#include "Teacher.h"
-#include "Graduate.h"
 
 void main()
 {
@@ -44,4 +40,9 @@ void main()
 	}
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++) delete group[i];
 #endif // POLYMORPHISM
+#ifdef TO_TEXT_FILE
+
+
+#endif // TO_TEXT_FILE
+
 }

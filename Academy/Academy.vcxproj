@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="Graduate.h" />
     <ClInclude Include="Human.h" />
+    <ClInclude Include="Save and Read.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Teacher.h" />
@@ -137,6 +138,7 @@
     <ClCompile Include="Graduate.cpp" />
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Save and Read.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Teacher.cpp" />
   </ItemGroup>

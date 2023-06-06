@@ -1,4 +1,4 @@
-#include "Teacher.h"
+#include "stdafx.h"
 
 //Get-Set
 const std::string& Teacher::get_speciality()const

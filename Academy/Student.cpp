@@ -1,4 +1,4 @@
-#include "Student.h"
+#include "stdafx.h"
 
 //Get-Set
 const std::string& Student::get_speciality()const
@@ -52,9 +52,37 @@ Student::~Student()
 #endif // SDEBUG
 
 }
-
 void Student::print()const
 {
 	Human::print();
-	cout << speciality << ", " << group << " " << rating << " " << attendance << endl;
+	cout << speciality << " " << group << " " << rating << " " << attendance << endl;
+}
+std::ostream& Student:: print(std::ostream& out) const
+{
+	return Human::print(out) << speciality << " " << group << " " << rating << " " << attendance;
+}
+std::ofstream& Student::print(std::ofstream& out) const
+{
+	Human::print(out);
+	out.width(SPECIALITY_WIDTH);
+	out << speciality;
+	out.width(GROUP_WIDTH);
+	out << group;
+	out.width(RATING_WIDTH);
+	out << rating;
+	out.width(ATTENDANCE_WIDTH);
+	out << attendance;
+	return out;
+}
+std::ifstream& Student::scan(std::ifstream& in)
+{
+	Human::scan(in);
+	char buffer[SPECIALITY_WIDTH + 1] = {};
+	in.read(buffer, SPECIALITY_WIDTH);
+	for (int i = strlen(buffer) - 1; buffer[i] == ' '; i--)			buffer[i] = 0;
+	while (buffer[0] == ' ')for (int i = 0; buffer[i]; i++)		buffer[i] = buffer[i + 1];
+	speciality = buffer;
+	in >> group;
+	in >> rating >> attendance;
+	return in;
 }

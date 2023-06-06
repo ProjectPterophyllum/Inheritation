@@ -30,6 +30,9 @@
     <ClInclude Include="Teacher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Save and Read.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graduate.cpp">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Teacher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Save and Read.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

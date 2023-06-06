@@ -1,4 +1,4 @@
-#include "Graduate.h"
+#include "stdafx.h"
 
 const std::string& Graduate::get_subject()const
 {

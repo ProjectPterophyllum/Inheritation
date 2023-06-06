@@ -1,6 +1,5 @@
 #pragma once
 #include "stdafx.h"
-#include "Human.h"
 
 #define TEACHER_PARAMETERS_TAKE	const std::string& speciality, int experience
 #define TEACHER_PARAMETERS_GIVE	speciality, experience

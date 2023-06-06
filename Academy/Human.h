@@ -3,9 +3,16 @@
 
 #define HUMAN_PARAMETERS_TAKE const std::string& last_name, const std::string& first_name, int age
 #define HUMAN_PARAMETERS_GIVE last_name, first_name, age
+//Заметка:
+//Если объявить операторы in-out тут, то будет ошибка в Human.cpp в реализации print(), "more than one operator matches these operands"
 
+//Класс человек, параметры - Фамилия, Имя, Возраст.
 class Human
 {
+	//static constant members:
+	static const int LAST_NAME_WIDTH = 18;
+	static const int FIRST_NAME_WIDTH = 15;
+	static const int AGE_WIDTH = 4;
 	//class members:
 	std::string last_name;
 	std::string first_name;
@@ -23,4 +30,12 @@ public:
 	//Desctructor:
 	virtual ~Human();
 	virtual void print()const;
+	virtual std::ostream& print(std::ostream& out) const;
+	virtual std::ofstream& print(std::ofstream& out) const;
+	virtual std::ifstream& scan(std::ifstream& in);
 };
+
+//Operators declaration:
+std::ostream& operator <<(std::ostream& out, const Human& name);
+std::ofstream& operator <<(std::ofstream& out, const Human& name);
+std::ifstream& operator >>(std::ifstream& in, Human& name);
