@@ -1,8 +1,8 @@
-class Student:	Angelo            Tomas          27  Passenger Transportation SalieriTeam       95      100     
+class Student:	Angelo            Tomas          27  Passenger Transportation  SalieriTeam       95      100     
 class Teacher:	Yoshida           Shoyo          999 Bushido                 10 
-class Graduate:	Sakata            Gintoki        29  MartialArts/Kenjutsu     Yorozuya          100     70      How to be a Great Samurai
-class Student:	Marley            Robert         30  Biology                  JahRastafari      100     100     
+class Graduate:	Sakata            Gintoki        29  MartialArts/Kenjutsu      Yorozuya          100     70      How to be a Great Samurai
+class Student:	Marley            Robert         30  Biology                   JahRastafari      100     100     
 class Teacher:	Cooper            Sheldon        25  Theorethical Physics    20 
-class Graduate:	Friman            Gordon         27  Theorethical Physics     VALVE_HL          100     100     How to teleport safety, without any issues
-class Graduate:	Menethil          Arthas         22  Theology                 Warriors of Light 20      100     How to cure the plague with the sacred hammer
+class Graduate:	Friman            Gordon         27  Theorethical Physics      VALVE_HL          100     100     How to teleport safety, without any issues
+class Graduate:	Menethil          Arthas         22  Theology                  Warriors of Light 20      100     How to cure the plague with the sacred hammer
 class Teacher:	Ner'              Zul            60  Shamanism               30 

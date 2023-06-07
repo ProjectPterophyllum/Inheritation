@@ -75,7 +75,7 @@
     <SourcePath>C:\Users\bad26\source\repos\Inheritation\Academy\src;$(SourcePath)</SourcePath>
     <ExcludePath>$(ExcludePath)</ExcludePath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
-    <ReferencePath>C:\Users\bad26\source\repos\Inheritation\Academy\files;$(ReferencePath)</ReferencePath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -111,6 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
