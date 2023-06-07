@@ -14,7 +14,7 @@ using std::endl;
 #define delimiter cout << "\n------------------------------------------------\n"
 //#define INHERITANCE_CHECK
 //#define POLYMORPHISM
-//#define TO_TEXT_FILE
+#define TO_TEXT_FILE
 #define OUT_OF_TEXT_FILE
 //#define HDEBUG
 //#define SDEBUG

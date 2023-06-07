@@ -85,8 +85,8 @@ std::ifstream& Student::scan(std::ifstream& in)
 	delete[] spec;
 	char* grp = new char[GROUP_WIDTH + 1] {};
 	in.read(grp, GROUP_WIDTH);
-	for (int i = strlen(grp) - 1; grp[i] == ' '; i--)			grp[i] = 0;
-	while (grp[0] == ' ')for (int i = 0; grp[i]; i++)		grp[i] = grp[i + 1];
+	for (int i = strlen(grp) - 1; grp[i] == ' '; i--)grp[i] = 0;
+	while (grp[0] == ' ')for (int i = 0; grp[i]; i++)grp[i] = grp[i + 1];
 	group = grp;
 	delete[] grp;
 	in >> rating >> attendance;
