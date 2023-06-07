@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "stdafx.h"
 
 #define TEACHER_PARAMETERS_TAKE	const std::string& speciality, int experience

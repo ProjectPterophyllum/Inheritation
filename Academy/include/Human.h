@@ -1,12 +1,9 @@
-#pragma once
+п»ї#pragma once
 #include "stdafx.h"
 
 #define HUMAN_PARAMETERS_TAKE const std::string& last_name, const std::string& first_name, int age
 #define HUMAN_PARAMETERS_GIVE last_name, first_name, age
-//Заметка:
-//Если объявить операторы in-out тут, то будет ошибка в Human.cpp в реализации print(), "more than one operator matches these operands"
-
-//Класс человек, параметры - Фамилия, Имя, Возраст.
+//РљР»Р°СЃСЃ С‡РµР»РѕРІРµРє, РїР°СЂР°РјРµС‚СЂС‹ - Р¤Р°РјРёР»РёСЏ, РРјСЏ, Р’РѕР·СЂР°СЃС‚.
 class Human
 {
 	//static constant members:

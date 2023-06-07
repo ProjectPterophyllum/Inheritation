@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "stdafx.h"
 #define STUDENT_PARAMETERS_TAKE const std::string& speciality, const std::string& group, double rating, double attendance
 #define STUDENT_PARAMETERS_GIVE speciality, group, rating, attendance

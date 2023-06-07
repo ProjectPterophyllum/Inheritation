@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 
 //Get-Set:
 const std::string& Human::get_last_name() const
@@ -44,16 +44,16 @@ Human::~Human()
 //Methods:
 void Human::print() const
 {
-	std::string S_ages(" Ëåò ");
-	if (age == 1 || age > 20 && age % 10 == 1) S_ages = " Ãîä ";
-	else if (age == 2 && age <= 4 || age > 20 && (age % 10 == 2 && age % 10 <= 4)) S_ages = " Ãîäà ";
+	std::string S_ages(" Ğ›ĞµÑ‚ ");
+	if (age == 1 || age > 20 && age % 10 == 1) S_ages = " Ğ“Ğ¾Ğ´ ";
+	else if (age == 2 && age <= 4 || age > 20 && (age % 10 == 2 && age % 10 <= 4)) S_ages = " Ğ“Ğ¾Ğ´Ğ° ";
 	cout << last_name << " " << first_name << " " << age << S_ages << endl;
 }
 std::ostream& Human::print(std::ostream& out) const
 {
-	std::string S_ages(" Ëåò ");
-	if (age == 1 || age > 20 && age % 10 == 1) S_ages = " Ãîä ";
-	else if (age == 2 && age <= 4 || age > 20 && (age % 10 == 2 && age % 10 <= 4)) S_ages = " Ãîäà ";
+	std::string S_ages(" Ğ›ĞµÑ‚ ");
+	if (age == 1 || age > 20 && age % 10 == 1) S_ages = " Ğ“Ğ¾Ğ´ ";
+	else if (age == 2 && age <= 4 || age > 20 && (age % 10 == 2 && age % 10 <= 4)) S_ages = " Ğ“Ğ¾Ğ´Ğ° ";
 	return out << last_name << " " << first_name << " " << age << S_ages;
 }
 std::ofstream& Human::print(std::ofstream& out) const
