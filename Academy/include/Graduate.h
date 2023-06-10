@@ -1,6 +1,5 @@
-#pragma once
+﻿#pragma once
 #include "stdafx.h"
-#include "Student.h"
 
 class Graduate :public Student
 {
@@ -11,4 +10,7 @@ public:
 	Graduate(HUMAN_PARAMETERS_TAKE, STUDENT_PARAMETERS_TAKE, const std::string& subject);
 	~Graduate();
 	void print()const;
+	std::ostream& print(std::ostream& out)const;
+	std::ofstream& print(std::ofstream& out)const;
+	std::ifstream& scan(std::ifstream& in);
 };

@@ -1,0 +1,24 @@
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+
+class Vehicle
+{
+	int speed;
+	const int MAX_SPEED;
+public:
+	virtual void move() = 0; //Pure virtual func;
+};
+class GroundVehicle : public Vehicle
+{
+
+public:
+
+};
+void main()
+{
+	setlocale(LC_ALL, "");
+	//Vehicle A; //Can nit instantiate Abstract Class;
+	GroundVehicle gv;
+}

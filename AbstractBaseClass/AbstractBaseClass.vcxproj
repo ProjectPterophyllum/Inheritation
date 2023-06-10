@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{cb3d6d8a-1976-44c0-8887-e097245d66ff}</ProjectGuid>
-    <RootNamespace>Academy</RootNamespace>
+    <ProjectGuid>{383ea63e-71cd-4c28-b43d-ba6bb31316d9}</ProjectGuid>
+    <RootNamespace>AbstractBaseClass</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,13 +70,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\bad26\source\repos\Inheritation\Academy\include;$(IncludePath)</IncludePath>
-    <SourcePath>C:\Users\bad26\source\repos\Inheritation\Academy\src;$(SourcePath)</SourcePath>
-    <ExcludePath>$(ExcludePath)</ExcludePath>
-    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
-    <ReferencePath>$(ReferencePath)</ReferencePath>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -111,7 +104,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,23 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\Graduate.h" />
-    <ClInclude Include="include\Human.h" />
-    <ClInclude Include="include\Save and Read.h" />
-    <ClInclude Include="include\stdafx.h" />
-    <ClInclude Include="include\Student.h" />
-    <ClInclude Include="include\Teacher.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Graduate.cpp" />
-    <ClCompile Include="src\Human.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Save and Read.cpp" />
-    <ClCompile Include="src\Student.cpp" />
-    <ClCompile Include="src\Teacher.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Group.txt" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

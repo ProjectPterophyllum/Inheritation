@@ -1,4 +1,4 @@
-#include "Teacher.h"
+﻿#include "stdafx.h"
 
 //Get-Set
 const std::string& Teacher::get_speciality()const
@@ -38,4 +38,26 @@ void Teacher::print()const
 {
 	Human::print();
 	cout << speciality << " " << experience << endl;
+}
+std::ostream& Teacher::print(std::ostream& out) const
+{
+	return Human::print(out) << " " << speciality << " " << experience;
+}
+std::ofstream& Teacher::print(std::ofstream& out) const
+{
+	Human::print(out);
+	out.width(SPECIALITY_WIDTH);
+	out << speciality;
+	out.width(EXPERIENCE_WIDTH);
+	out << experience;
+	return out;
+}
+std::ifstream& Teacher::scan(std::ifstream& in)
+{
+	Human::scan(in);
+	char buffer[SPECIALITY_WIDTH + 1] = {};
+	in.read(buffer, SPECIALITY_WIDTH);
+	speciality = buffer;
+	in >> experience;
+	return in;
 }

@@ -1,12 +1,14 @@
-#pragma once
+﻿#pragma once
 #include "stdafx.h"
-#include "Human.h"
 
 #define TEACHER_PARAMETERS_TAKE	const std::string& speciality, int experience
 #define TEACHER_PARAMETERS_GIVE	speciality, experience
 
 class Teacher :public Human
 {
+	//static const class members
+	static const int SPECIALITY_WIDTH = 24;
+	static const int EXPERIENCE_WIDTH = 3;
 	//class members:
 	std::string speciality;
 	int experience;
@@ -19,4 +21,7 @@ public:
 	Teacher(HUMAN_PARAMETERS_TAKE, TEACHER_PARAMETERS_TAKE);
 	~Teacher();
 	void print()const;
+	std::ostream& print(std::ostream& out) const;
+	std::ofstream& print(std::ofstream& out) const;
+	std::ifstream& scan(std::ifstream& in);
 };

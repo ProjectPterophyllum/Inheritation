@@ -1,11 +1,15 @@
-#pragma once
+﻿#pragma once
 #include "stdafx.h"
-#include "Human.h"
 #define STUDENT_PARAMETERS_TAKE const std::string& speciality, const std::string& group, double rating, double attendance
 #define STUDENT_PARAMETERS_GIVE speciality, group, rating, attendance
 
 class Student : public Human
 {
+	//static constant members:
+	static const int SPECIALITY_WIDTH = 26;
+	static const int GROUP_WIDTH = 20;
+	static const int RATING_WIDTH = 8;
+	static const int ATTENDANCE_WIDTH = 8;
 	//class members:
 	std::string speciality;
 	std::string group;
@@ -25,4 +29,7 @@ public:
 	Student(HUMAN_PARAMETERS_TAKE, STUDENT_PARAMETERS_TAKE);
 	~Student();
 	void print()const;
+	std::ostream& print(std::ostream& out) const;
+	std::ofstream& print(std::ofstream& out) const;
+	std::ifstream& scan(std::ifstream& in);
 };
