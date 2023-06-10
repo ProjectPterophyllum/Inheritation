@@ -10,12 +10,7 @@ class Vehicle
 public:
 	virtual void move() = 0; //Pure virtual func;
 };
-class GroundVehicle : public Vehicle
-{
-
-public:
-
-};
+class GroundVehicle : public Vehicle{};
 void main()
 {
 	setlocale(LC_ALL, "");
