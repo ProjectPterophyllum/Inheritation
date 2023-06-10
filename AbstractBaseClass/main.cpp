@@ -14,6 +14,6 @@ class GroundVehicle : public Vehicle{};
 void main()
 {
 	setlocale(LC_ALL, "");
-	//Vehicle A; //Can nit instantiate Abstract Class;
+	//Vehicle A; //Cannot instantiate Abstract Class;
 	GroundVehicle gv;
 }
