@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -17,7 +17,7 @@ class Car :public GroundVehicle
 public:
 	void move()
 	{
-		cout << "Ìàøèíà åçäèò íà êîëåñàõ:" << endl;
+		cout << "ÐœÐ°ÑˆÐ¸Ð½Ð° ÐµÐ·Ð´Ð¸Ñ‚ Ð½Ð° ÐºÐ¾Ð»ÐµÑÐ°Ñ…:" << endl;
 	}
 };
 class Buldozer : public GroundVehicle
@@ -25,7 +25,7 @@ class Buldozer : public GroundVehicle
 public:
 	void move()
 	{
-		cout << "Áóëüäîçåð åçäèò íà ãóñåíèöàõ:" << endl;
+		cout << "Ð‘ÑƒÐ»ÑŒÐ´Ð¾Ð·ÐµÑ€ ÐµÐ·Ð´Ð¸Ñ‚ Ð½Ð° Ð³ÑƒÑÐµÐ½Ð¸Ñ†Ð°Ñ…:" << endl;
 	}
 };
 void main()
