@@ -1,4 +1,4 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 
 namespace Geometry
 {
@@ -10,8 +10,8 @@ namespace Geometry
 		virtual void draw() const = 0;
 		virtual void info() const
 		{
-			cout << "Площадь: " << get_area() << endl;
-			cout << "Периметр: " << get_perimeter() << endl;
+			cout << "РџР»РѕС‰Р°РґСЊ: " << get_area() << endl;
+			cout << "РџРµСЂРёРјРµС‚СЂ: " << get_perimeter() << endl;
 			draw();
 		}
 	};
@@ -57,8 +57,8 @@ namespace Geometry
 		void info() const
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Диагональ квадрата: " << get_diagonal() << endl;
-			cout << "Длина стороны квадрата: " << get_lenght_side() << endl;
+			cout << "Р”РёР°РіРѕРЅР°Р»СЊ РєРІР°РґСЂР°С‚Р°: " << get_diagonal() << endl;
+			cout << "Р”Р»РёРЅР° СЃС‚РѕСЂРѕРЅС‹ РєРІР°РґСЂР°С‚Р°: " << get_lenght_side() << endl;
 			Shape::info();
 		}
 	};
@@ -97,30 +97,30 @@ namespace Geometry
 		{
 #ifdef RECTANGLE_GDI_DRAW
 			//
-		//На Windows 11,
-		// по умолчанию стоит НЕ стандарная консоль, 
-		// а PowerShell или же его новое название "Терминал" 
-		// в нем этот способ рисования не работает совсем.
+		//РќР° Windows 11,
+		// РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СЃС‚РѕРёС‚ РќР• СЃС‚Р°РЅРґР°СЂРЅР°СЏ РєРѕРЅСЃРѕР»СЊ, 
+		// Р° PowerShell РёР»Рё Р¶Рµ РµРіРѕ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ "РўРµСЂРјРёРЅР°Р»" 
+		// РІ РЅРµРј СЌС‚РѕС‚ СЃРїРѕСЃРѕР± СЂРёСЃРѕРІР°РЅРёСЏ РЅРµ СЂР°Р±РѕС‚Р°РµС‚ СЃРѕРІСЃРµРј.
 		// 
-		//Если переключить на обычную консоль в "Конфиденциальность" >> "Средствах разработчика" в настройках самой системы, то все работает.
+		//Р•СЃР»Рё РїРµСЂРµРєР»СЋС‡РёС‚СЊ РЅР° РѕР±С‹С‡РЅСѓСЋ РєРѕРЅСЃРѕР»СЊ РІ "РљРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚СЊ" >> "РЎСЂРµРґСЃС‚РІР°С… СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°" РІ РЅР°СЃС‚СЂРѕР№РєР°С… СЃР°РјРѕР№ СЃРёСЃС‚РµРјС‹, С‚Рѕ РІСЃРµ СЂР°Р±РѕС‚Р°РµС‚.
 		//  
 
 		//WinGDI - Windlows Graphics Device Interface
-		//1)Получаем обработчик окна консоли:
+		//1)РџРѕР»СѓС‡Р°РµРј РѕР±СЂР°Р±РѕС‚С‡РёРє РѕРєРЅР° РєРѕРЅСЃРѕР»Рё:
 			HWND hwnd = GetConsoleWindow();
-			//2)Получаем контекст устройства окна консоли:
+			//2)РџРѕР»СѓС‡Р°РµРј РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР° РѕРєРЅР° РєРѕРЅСЃРѕР»Рё:
 			HDC hdc = GetDC(hwnd);
-			//3) Создаем карандаш. Карандаш рисует контур фигуры
-			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(255, 0, 0)); //PS_SOLID - Сплошная линия, 5 - толщина линии
-			//4) Создаем кисть. Кисть выполняет заливку фигуры
+			//3) РЎРѕР·РґР°РµРј РєР°СЂР°РЅРґР°С€. РљР°СЂР°РЅРґР°С€ СЂРёСЃСѓРµС‚ РєРѕРЅС‚СѓСЂ С„РёРіСѓСЂС‹
+			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(255, 0, 0)); //PS_SOLID - РЎРїР»РѕС€РЅР°СЏ Р»РёРЅРёСЏ, 5 - С‚РѕР»С‰РёРЅР° Р»РёРЅРёРё
+			//4) РЎРѕР·РґР°РµРј РєРёСЃС‚СЊ. РљРёСЃС‚СЊ РІС‹РїРѕР»РЅСЏРµС‚ Р·Р°Р»РёРІРєСѓ С„РёРіСѓСЂС‹
 			HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
-			//5) Нужно выбрать чем и на чем мы будем рисовать
+			//5) РќСѓР¶РЅРѕ РІС‹Р±СЂР°С‚СЊ С‡РµРј Рё РЅР° С‡РµРј РјС‹ Р±СѓРґРµРј СЂРёСЃРѕРІР°С‚СЊ
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
 			::Rectangle(hdc, 100, 100, 300, 200);
 			DeleteObject(hPen);
 			DeleteObject(hBrush);
-			//Освобождаем контекст устройства:
+			//РћСЃРІРѕР±РѕР¶РґР°РµРј РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР°:
 			ReleaseDC(hwnd, hdc);
 #endif // RECTANGLE_GDI_DRAW
 #ifdef RECTANGLE_SIMPLE_DRAW
@@ -141,9 +141,9 @@ namespace Geometry
 		void info()
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Диагональ: " << get_diagonal() << endl;
-			cout << "Длина: " << get_lenght() << endl;
-			cout << "Ширина: " << get_width() << endl;
+			cout << "Р”РёР°РіРѕРЅР°Р»СЊ: " << get_diagonal() << endl;
+			cout << "Р”Р»РёРЅР°: " << get_lenght() << endl;
+			cout << "РЁРёСЂРёРЅР°: " << get_width() << endl;
 			Shape::info();
 		}
 	};
@@ -174,10 +174,10 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	Geometry::Square square(5);
-	/*cout << "Диагональ квадрата: " << square.get_diagonal() << endl;
-	cout << "Длина стороны квадрата: " << square.get_lenght_side() << endl;
-	cout << "Площадь квадрата: " << square.get_area() << endl;
-	cout << "Периметр квадрата: " << square.get_perimeter() << endl;*/
+	/*cout << "Р”РёР°РіРѕРЅР°Р»СЊ РєРІР°РґСЂР°С‚Р°: " << square.get_diagonal() << endl;
+	cout << "Р”Р»РёРЅР° СЃС‚РѕСЂРѕРЅС‹ РєРІР°РґСЂР°С‚Р°: " << square.get_lenght_side() << endl;
+	cout << "РџР»РѕС‰Р°РґСЊ РєРІР°РґСЂР°С‚Р°: " << square.get_area() << endl;
+	cout << "РџРµСЂРёРјРµС‚СЂ РєРІР°РґСЂР°С‚Р°: " << square.get_perimeter() << endl;*/
 	square.info();
 	Geometry::Rectangle rect(25, 15);
 	rect.info();
