@@ -42,6 +42,7 @@ namespace Geometry
 		}
 		void draw() const
 		{
+#ifdef SIMPLE_SQUARE_DRAW
 			for (int i = 0; i < lenght_side; i++)
 			{
 				for (int j = 0; j < lenght_side; j++)
@@ -53,12 +54,26 @@ namespace Geometry
 				}
 				cout << endl;
 			}
+#endif // SIMPLE_SQUARE_DRAW
+			HWND hwnd = GetConsoleWindow();
+			HDC hdc = GetDC(hwnd);
+			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(0, 0, 255));
+			HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 0));
+			SelectObject(hdc, hPen);
+			SelectObject(hdc, hBrush);
+			::Rectangle(hdc, 300, 5, 350, 55);
+			DeleteObject(hPen);
+			DeleteObject(hBrush);
+			ReleaseDC(hwnd, hdc);
 		}
 		void info() const
 		{
-			cout << typeid(*this).name() << endl;
-			cout << "Диагональ квадрата: " << get_diagonal() << endl;
-			cout << "Длина стороны квадрата: " << get_lenght_side() << endl;
+			cout << typeid(*this).name()
+				<< endl
+				<< "Диагональ квадрата: " << get_diagonal()
+				<< endl
+				<< "Длина стороны квадрата: " << get_lenght_side()
+				<< endl;
 			Shape::info();
 		}
 	};
@@ -96,28 +111,29 @@ namespace Geometry
 		void draw() const
 		{
 #ifdef RECTANGLE_GDI_DRAW
-			//
-		//На Windows 11,
-		// по умолчанию стоит НЕ стандарная консоль, 
-		// а PowerShell или же его новое название "Терминал" 
-		// в нем этот способ рисования не работает совсем.
-		// 
-		//Если переключить на обычную консоль в "Конфиденциальность" >> "Средствах разработчика" в настройках самой системы, то все работает.
-		//  
 
-		//WinGDI - Windlows Graphics Device Interface
-		//1)Получаем обработчик окна консоли:
+			/* На Windows 11, по умолчанию стоит НЕ стандарная консоль, а PowerShell или же его новое название "Терминал", в нем этот способ рисования не работает совсем.
+			 Если переключить на обычную консоль в "Конфиденциальность" >> "Средствах разработчика" в настройках самой системы, то все работает.
+
+			 (?)Возможно нужно захватывать другое окно, я попробовал то что нашел в интернете по этой теме, ничего не работает, либо я применил это не правильно.
+			 (?)Либо использовать GDI+, Direct2D или что-то иное, не знаю, не получилось разобраться
+			 (?)Либо попробовать создать какое-то отдельное окно, не консольное и перенести все рисование, а так же информацию туда, но этому я пока не научился*/
+
+
+			 //WinGDI - Windlows Graphics Device Interface
+			 //1)Получаем обработчик окна консоли:
 			HWND hwnd = GetConsoleWindow();
 			//2)Получаем контекст устройства окна консоли:
 			HDC hdc = GetDC(hwnd);
-			//3) Создаем карандаш. Карандаш рисует контур фигуры
-			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(255, 0, 0)); //PS_SOLID - Сплошная линия, 5 - толщина линии
-			//4) Создаем кисть. Кисть выполняет заливку фигуры
-			HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
-			//5) Нужно выбрать чем и на чем мы будем рисовать
+			//3) Создаем карандаш. Карандаш рисует контур фигуры:
+			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(0, 255, 0)); //PS_SOLID - Сплошная линия, 5 - толщина линии
+			//4) Создаем кисть. Кисть выполняет заливку фигуры:
+			HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 0));
+			//5) Нужно выбрать чем и на чем мы будем рисовать:
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
-			::Rectangle(hdc, 100, 100, 300, 200);
+			::Rectangle(hdc, 300, 80, 400, 130);
+			//6) Удаляем объекты Карандаш и Кисть:
 			DeleteObject(hPen);
 			DeleteObject(hBrush);
 			//Освобождаем контекст устройства:
@@ -134,41 +150,72 @@ namespace Geometry
 						cout << "  ";
 				}
 				cout << endl;
-			}
+		}
 #endif // RECTANGLE_SIMPLE_DRAW
 
+	}
+		void info()
+		{
+			cout << typeid(*this).name()
+				<< endl
+				<< "Диагональ: " << get_diagonal()
+				<< endl
+				<< "Длина: " << get_lenght()
+				<< endl
+				<< "Ширина: " << get_width()
+				<< endl;
+			Shape::info();
+		}
+};
+	class Halo : public Shape
+	{
+		double diameter;
+	public:
+		Halo(double diameter)
+		{
+			this->diameter = diameter;
+		}
+		~Halo() {}
+		double get_diameter() const
+		{
+			return diameter;
+		}
+		double get_radius() const
+		{
+			return diameter / 2;
+		}
+		double get_perimeter() const
+		{
+			return 2 * M_PI * get_radius();
+		}
+		double get_area() const
+		{
+			return M_PI * pow(get_radius(), 2);
+		}
+		void draw() const
+		{
+			HWND hwnd = GetConsoleWindow();
+			HDC hdc = GetDC(hwnd);
+			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(0, 100, 150));
+			HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 0));
+			SelectObject(hdc, hPen);
+			SelectObject(hdc, hBrush);
+			Ellipse(hdc, 300, 150, 350, 200);
+			DeleteObject(hPen);
+			DeleteObject(hBrush);
+			ReleaseDC(hwnd, hdc);
 		}
 		void info()
 		{
-			cout << typeid(*this).name() << endl;
-			cout << "Диагональ: " << get_diagonal() << endl;
-			cout << "Длина: " << get_lenght() << endl;
-			cout << "Ширина: " << get_width() << endl;
+			cout << typeid(*this).name()
+				<< endl
+				<< "Диаметр: " << get_diameter()
+				<< endl
+				<< "Радиус: " << get_radius()
+				<< endl;
 			Shape::info();
 		}
 	};
-	//class Halo : public Shape
-	//{
-	//	int diameter;
-	//public:
-	//	Halo(int diameter)
-	//	{
-	//		this->diameter = diameter;
-	//	}
-	//	~Halo() {}
-	//	int get_diameter() const
-	//	{
-	//		return diameter;
-	//	}
-	//	double get_radius() const
-	//	{
-	//		return diameter / 2;
-	//	}
-	//	double get_perimeter() const
-	//	{
-	//		return (2 * 3.14) * get_radius();
-	//	}
-	//};
 }
 void main()
 {
@@ -181,4 +228,6 @@ void main()
 	square.info();
 	Geometry::Rectangle rect(25, 15);
 	rect.info();
+	Geometry::Halo circle(10);
+	circle.info();
 }
