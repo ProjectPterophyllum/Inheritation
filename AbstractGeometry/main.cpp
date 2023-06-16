@@ -13,6 +13,7 @@ namespace Geometry
 			cout << "Площадь: " << get_area() << endl;
 			cout << "Периметр: " << get_perimeter() << endl;
 			draw();
+			cout << endl;
 		}
 	};
 	class Square : public Shape
@@ -55,6 +56,7 @@ namespace Geometry
 				cout << endl;
 			}
 #endif // SIMPLE_SQUARE_DRAW
+#ifdef GDI_SQUARE_DRAW
 			HWND hwnd = GetConsoleWindow();
 			HDC hdc = GetDC(hwnd);
 			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(0, 0, 255));
@@ -65,6 +67,8 @@ namespace Geometry
 			DeleteObject(hPen);
 			DeleteObject(hBrush);
 			ReleaseDC(hwnd, hdc);
+#endif // GDI_SQUARE_DRAW
+
 		}
 		void info() const
 		{
@@ -216,18 +220,68 @@ namespace Geometry
 			Shape::info();
 		}
 	};
+	class Triangle :public Shape
+	{
+		double lenght_side;
+	public:
+		Triangle(double lenght_side)
+		{
+			this->lenght_side = lenght_side;
+		}
+		~Triangle(){}
+		double get_lenght_side() const
+		{
+			return lenght_side;
+		}
+		double get_height() const
+		{
+			return sqrt(pow(lenght_side, 2) - pow(lenght_side / 2, 2));
+		}
+		double get_area() const
+		{
+			return (lenght_side / 2) * get_height();
+		}
+		double get_perimeter() const
+		{
+			return lenght_side * 3;
+		}
+		void draw() const
+		{
+			HWND hwnd = GetConsoleWindow();
+			HDC hdc = GetDC(hwnd);
+			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(100, 100, 150));
+			HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 0));
+			SelectObject(hdc, hPen);
+			SelectObject(hdc, hBrush);
+			POINT vertices[] = { {330, 230}, {380, 300}, {280, 300} };
+			Polygon(hdc, vertices, sizeof(vertices) / sizeof(vertices[0]));
+			DeleteObject(hPen);
+			DeleteObject(hBrush);
+			ReleaseDC(hwnd, hdc);
+		}
+		void info()
+		{
+			cout << typeid(*this).name()
+				<< endl
+				<< "Длинна стороны: " << get_lenght_side()
+				<< endl
+				<< "Высота треугольника: " << get_height()
+				<< endl;
+			Shape::info();
+		}
+	};
 }
 void main()
 {
 	setlocale(LC_ALL, "");
 	Geometry::Square square(5);
-	/*cout << "Диагональ квадрата: " << square.get_diagonal() << endl;
-	cout << "Длина стороны квадрата: " << square.get_lenght_side() << endl;
-	cout << "Площадь квадрата: " << square.get_area() << endl;
-	cout << "Периметр квадрата: " << square.get_perimeter() << endl;*/
 	square.info();
 	Geometry::Rectangle rect(25, 15);
 	rect.info();
 	Geometry::Halo circle(10);
 	circle.info();
+	Geometry::Triangle triangle(10);
+	triangle.info();
+	/*::POINT vertices[] = { {200, 100}, {300, 300}, {100, 300} };
+	::Polygon(hdc, vertices, sizeof(vertices) / sizeof(vertices[0]));*/
 }
