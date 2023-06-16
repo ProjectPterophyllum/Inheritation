@@ -282,6 +282,4 @@ void main()
 	circle.info();
 	Geometry::Triangle triangle(10);
 	triangle.info();
-	/*::POINT vertices[] = { {200, 100}, {300, 300}, {100, 300} };
-	::Polygon(hdc, vertices, sizeof(vertices) / sizeof(vertices[0]));*/
 }
