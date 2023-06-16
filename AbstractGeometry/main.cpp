@@ -171,7 +171,7 @@ namespace Geometry
 			Shape::info();
 		}
 };
-	class Halo : public Shape
+	class Halo : public Shape //Circle
 	{
 		double diameter;
 	public:
