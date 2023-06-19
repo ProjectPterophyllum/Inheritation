@@ -86,7 +86,7 @@ namespace Geometry
 		double width;
 		double lenght;
 	public:
-		Rectangle(int width, int lenght)
+		Rectangle(double width, double lenght)
 		{
 			this->width = width;
 			this->lenght = lenght;
