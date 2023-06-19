@@ -2,9 +2,84 @@
 
 namespace Geometry
 {
+	enum Color
+	{
+		red = 0x000000FF,
+		green = 0x0000FF00,
+		blue = 0x00FF0000,
+		grey = 0x00AAAAAA,
+		yellow = 0x0000FFFF,
+		white = 0x00FFFFFF,
+		black = 0x00000000
+	};
+	enum Limits
+	{
+		MIN_START_X = 100,
+		MAX_START_X = 1000,
+		MIN_START_Y = 100,
+		MAX_START_Y = 800,
+		MIN_LINE_WIDTH = 1,
+		MAX_LINE_WIDTH = 30,
+		//-----------------------
+		MIN_LENGHT = 20,
+		MAX_LENGHT = 1000
+	};
+#define SHAPE_TAKE_PARAM Color color, int start_x, int start_y, int line_widht
+#define SHAPE_GIVE_PARAM color, start_x, start_y, line_widht
 	class Shape
 	{
+	protected:
+		Color color;
+		int start_x;
+		int line_width;
+		int line_width;
+
 	public:
+		Shape(SHAPE_TAKE_PARAM)
+		{
+			set_color(color);
+			set_start_x(start_x);
+			set_start_y(start_y);
+			set_line_width(line_width);
+		}
+		Color get_color() const
+		{
+			return color;
+		}
+		int get_start_x() const
+		{
+			return start_x;
+		}
+		int get_start_y() const
+		{
+			return line_width;
+		}
+		int get_line_width() const
+		{
+			return line_width;
+		}
+		void set_color(Color color)
+		{
+			this->color = color;
+		}
+		void set_start_x(int start_x)
+		{
+			if (start_x < Limits::MIN_START_X) start_x = Limits::MIN_START_X;
+			if (start_x > Limits::MAX_START_X) start_x = Limits::MAX_START_X;
+			this->start_x = start_x;
+		}
+		void set_start_y(int start_y)
+		{
+			if (start_y < Limits::MIN_START_Y) start_y = Limits::MIN_START_Y;
+			if (start_y > Limits::MAX_START_Y) start_y = Limits::MAX_START_Y;
+			this->start_x = start_y;
+		}
+		void set_line_width(int line_width)
+		{
+			if (line_width < Limits::MIN_LINE_WIDTH) line_width = Limits::MIN_LINE_WIDTH;
+			if (line_width > Limits::MAX_LINE_WIDTH) line_width = Limits::MAX_LINE_WIDTH;
+			this->line_width = line_width;
+		}
 		virtual double get_area() const = 0;
 		virtual double get_perimeter() const = 0;
 		virtual void draw() const = 0;
@@ -16,82 +91,28 @@ namespace Geometry
 			cout << endl;
 		}
 	};
-	class Square : public Shape
-	{
-		double lenght_side;
-	public:
-		double get_lenght_side() const
-		{
-			return lenght_side;
-		}
-		Square(double side)
-		{
-			lenght_side = side;
-		}
-		~Square() {};
-		double get_diagonal() const
-		{
-			return sqrt(lenght_side * lenght_side * 2);
-		}
-		double get_area() const
-		{
-			return lenght_side * lenght_side;
-		}
-		double get_perimeter() const
-		{
-			return lenght_side * 4;
-		}
-		void draw() const
-		{
-#ifdef SIMPLE_SQUARE_DRAW
-			for (int i = 0; i < lenght_side; i++)
-			{
-				for (int j = 0; j < lenght_side; j++)
-				{
-					if (i == 0 || i == lenght_side - 1 || j == 0 || j == lenght_side - 1)
-						cout << " *";
-					else
-						cout << "  ";
-				}
-				cout << endl;
-			}
-#endif // SIMPLE_SQUARE_DRAW
-#ifdef GDI_SQUARE_DRAW
-			HWND hwnd = GetConsoleWindow();
-			HDC hdc = GetDC(hwnd);
-			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(0, 0, 255));
-			HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 0));
-			SelectObject(hdc, hPen);
-			SelectObject(hdc, hBrush);
-			::Rectangle(hdc, 300, 5, 350, 55);
-			DeleteObject(hPen);
-			DeleteObject(hBrush);
-			ReleaseDC(hwnd, hdc);
-#endif // GDI_SQUARE_DRAW
-
-		}
-		void info() const
-		{
-			cout << typeid(*this).name()
-				<< endl
-				<< "Диагональ квадрата: " << get_diagonal()
-				<< endl
-				<< "Длина стороны квадрата: " << get_lenght_side()
-				<< endl;
-			Shape::info();
-		}
-	};
 	class Rectangle :public Shape
 	{
 		double width;
 		double lenght;
 	public:
-		Rectangle(int width, int lenght)
+		Rectangle(double width, double lenght, SHAPE_TAKE_PARAM) : Shape(SHAPE_GIVE_PARAM)
 		{
-			this->width = width;
-			this->lenght = lenght;
+	
 		}
 		~Rectangle() {}
+		void set_width(double width)
+		{
+			if (width < MIN_LENGHT)width = MIN_LENGHT;
+			if (width > MAX_LENGHT) width = MAX_LENGHT;
+			this->width = width;
+		}
+		void set_lenght(double lenght)
+		{
+			if (lenght < MIN_LENGHT)lenght = MIN_LENGHT;
+			if (lenght > MAX_LENGHT)lenght = MAX_LENGHT;
+			this->lenght = lenght;
+		}
 		double get_width()const
 		{
 			return width;
@@ -130,9 +151,9 @@ namespace Geometry
 			//2)Получаем контекст устройства окна консоли:
 			HDC hdc = GetDC(hwnd);
 			//3) Создаем карандаш. Карандаш рисует контур фигуры:
-			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(0, 255, 0)); //PS_SOLID - Сплошная линия, 5 - толщина линии
+			HPEN hPen = CreatePen(PS_SOLID, 10, color); //PS_SOLID - Сплошная линия, 5 - толщина линии
 			//4) Создаем кисть. Кисть выполняет заливку фигуры:
-			HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 0));
+			HBRUSH hBrush = CreateSolidBrush(color);
 			//5) Нужно выбрать чем и на чем мы будем рисовать:
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
@@ -154,10 +175,10 @@ namespace Geometry
 						cout << "  ";
 				}
 				cout << endl;
-		}
+			}
 #endif // RECTANGLE_SIMPLE_DRAW
 
-	}
+		}
 		void info()
 		{
 			cout << typeid(*this).name()
@@ -170,12 +191,18 @@ namespace Geometry
 				<< endl;
 			Shape::info();
 		}
-};
+	};
+	class Square :public Rectangle
+	{
+	public:
+		Square(double side, SHAPE_TAKE_PARAM) :Rectangle(side, side, SHAPE_GIVE_PARAM) {}
+		~Square() {}
+	};
 	class Halo : public Shape //Circle
 	{
 		double diameter;
 	public:
-		Halo(double diameter)
+		Halo(double diameter, SHAPE_TAKE_PARAM) :Shape(SHAPE_GIVE_PARAM)
 		{
 			this->diameter = diameter;
 		}
@@ -200,8 +227,8 @@ namespace Geometry
 		{
 			HWND hwnd = GetConsoleWindow();
 			HDC hdc = GetDC(hwnd);
-			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(0, 100, 150));
-			HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 0));
+			HPEN hPen = CreatePen(PS_SOLID, line_width, color);
+			HBRUSH hBrush = CreateSolidBrush(color);
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
 			Ellipse(hdc, 300, 150, 350, 200);
@@ -222,13 +249,18 @@ namespace Geometry
 	};
 	class Triangle :public Shape
 	{
+
+	};
+
+	class EquilaterallTriangle :public Triangle
+	{
 		double lenght_side;
 	public:
-		Triangle(double lenght_side)
+		EquilaterallTriangle(double lenght_side, SHAPE_TAKE_PARAM) : Shape(SHAPE_GIVE_PARAM)
 		{
 			this->lenght_side = lenght_side;
 		}
-		~Triangle(){}
+		~EquilaterallTriangle() {}
 		double get_lenght_side() const
 		{
 			return lenght_side;
@@ -249,8 +281,8 @@ namespace Geometry
 		{
 			HWND hwnd = GetConsoleWindow();
 			HDC hdc = GetDC(hwnd);
-			HPEN hPen = CreatePen(PS_SOLID, 10, RGB(100, 100, 150));
-			HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 0));
+			HPEN hPen = CreatePen(PS_SOLID, line_width, color);
+			HBRUSH hBrush = CreateSolidBrush(color);
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
 			POINT vertices[] = { {330, 230}, {380, 300}, {280, 300} };
