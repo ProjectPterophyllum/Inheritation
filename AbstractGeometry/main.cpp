@@ -3,7 +3,6 @@
 namespace Geometry
 {
 	class Shape;
-
 	enum Color
 	{
 		red = 0x000000FF,
@@ -30,6 +29,19 @@ namespace Geometry
 	};
 #define SHAPE_TAKE_PARAM Color color, double start_x, double start_y, int line_widht
 #define SHAPE_GIVE_PARAM color, start_x, start_y, line_widht
+	void draw(void* func(HDC, double, double, double, double))
+	{
+		HWND hwnd = GetConsoleWindow();
+		HDC hdc = GetDC(hwnd);
+		HPEN hPen = CreatePen(PS_SOLID, line_width, color);
+		HBRUSH hBrush = CreateSolidBrush(color);
+		SelectObject(hdc, hPen);
+		SelectObject(hdc, hBrush);
+		func();
+		DeleteObject(hPen);
+		DeleteObject(hBrush);
+		ReleaseDC(hwnd, hdc);
+	}
 	class Shape
 	{
 	protected:
