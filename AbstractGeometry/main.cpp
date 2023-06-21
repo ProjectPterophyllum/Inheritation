@@ -2,6 +2,8 @@
 
 namespace Geometry
 {
+	class Shape;
+
 	enum Color
 	{
 		red = 0x000000FF,
@@ -19,10 +21,10 @@ namespace Geometry
 		MIN_START_X = 300,
 		MAX_START_X = 1000,
 		MIN_START_Y = 5,
-		MAX_START_Y = 800,
+		MAX_START_Y = 1000,
 		MIN_LINE_WIDTH = 1,
 		MAX_LINE_WIDTH = 30,
-		//-----------------------
+		//-----------------------//
 		MIN_LENGHT = 20,
 		MAX_LENGHT = 1000
 	};
@@ -364,7 +366,7 @@ namespace Geometry
 		}
 		void draw() const
 		{
-			
+
 		}
 		void info() const
 		{
