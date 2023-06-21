@@ -7,7 +7,7 @@ namespace Geometry
 		red = 0x000000FF,
 		green = 0x0000FF00,
 		blue = 0x00FF0000,
-		aquablue=0x00FFFF00,
+		aquablue = 0x00FFFF00,
 		purple = 0x00800080,
 		grey = 0x00AAAAAA,
 		yellow = 0x0000FFFF,
@@ -319,6 +319,127 @@ namespace Geometry
 			Shape::info();
 		}
 	};
+	class IsoscaleTriangle :public Triangle
+	{
+		double base;
+		double lenght_side;
+	public:
+		IsoscaleTriangle(double base, double lenght_side, SHAPE_TAKE_PARAM) :Triangle(SHAPE_GIVE_PARAM)
+		{
+			set_base(base);
+			set_lenght_side(lenght_side);
+		}
+		~IsoscaleTriangle() {};
+		void set_base(double base)
+		{
+			if (base < Limits::MIN_LENGHT) base = Limits::MIN_LENGHT;
+			if (base > Limits::MAX_LENGHT) base = Limits::MAX_LENGHT;
+			this->base = base;
+		}
+		void set_lenght_side(double lenght_side)
+		{
+			if (lenght_side < Limits::MIN_LENGHT) lenght_side = Limits::MIN_LENGHT;
+			if (lenght_side > Limits::MAX_LENGHT) lenght_side = Limits::MAX_LENGHT;
+			this->lenght_side = lenght_side;
+		}
+		double get_base()const
+		{
+			return base;
+		}
+		double get_lenght_side()const
+		{
+			return lenght_side;
+		}
+		double get_height() const
+		{
+			return sqrt(pow(lenght_side, 2) - pow(base / 2, 2));
+		}
+		double get_area() const
+		{
+			return base * get_height() / 2;
+		}
+		double get_perimeter() const
+		{
+			return (lenght_side * 2) + base;
+		}
+		void draw() const
+		{
+			
+		}
+		void info() const
+		{
+			cout << typeid(*this).name()
+				<< endl
+				<< "Длинна стороны: " << get_lenght_side()
+				<< endl
+				<< "Основание треугольника: " << get_base()
+				<< endl
+				<< "Высота треугольника: " << get_height()
+				<< endl;
+			Shape::info();
+		}
+	};
+	class OrthogonalTriangle :public Triangle
+	{
+		double lenght_side_a;
+		double lenght_side_b;
+		double hypotenuse;
+	public:
+		OrthogonalTriangle(double lenght_side_a, double lenght_side_b, SHAPE_TAKE_PARAM) :Triangle(SHAPE_GIVE_PARAM)
+		{
+			set_lenght_side_a(lenght_side_a);
+			set_lenght_side_b(lenght_side_b);
+			set_hypotenuse(lenght_side_a, lenght_side_b);
+		}
+		void set_lenght_side_a(double lenght_side_a)
+		{
+			if (lenght_side_a < Limits::MIN_LENGHT) lenght_side_a = Limits::MIN_LENGHT;
+			if (lenght_side_a > Limits::MAX_LENGHT) lenght_side_a = Limits::MAX_LENGHT;
+			this->lenght_side_a = lenght_side_a;
+		}
+		void set_lenght_side_b(double lenght_side_b)
+		{
+			if (lenght_side_b < Limits::MIN_LENGHT) lenght_side_b = Limits::MIN_LENGHT;
+			if (lenght_side_b > Limits::MAX_LENGHT) lenght_side_b = Limits::MAX_LENGHT;
+			this->lenght_side_a = lenght_side_b;
+		}
+		void set_hypotenuse(double lenght_side_a, double lenght_side_b)
+		{
+			this->hypotenuse = sqrt(pow(lenght_side_a, 2) + pow(lenght_side_b, 2));
+		}
+		double get_lenght_side_a() const
+		{
+			return lenght_side_a;
+		}
+		double get_lenght_side_b() const
+		{
+			return lenght_side_b;
+		}
+		double get_hypotenuse() const
+		{
+			return hypotenuse;
+		}
+		double get_height() const
+		{
+			return (lenght_side_a * lenght_side_b) / hypotenuse;
+		}
+		double get_area() const
+		{
+			return (lenght_side_a * lenght_side_b) / 2;
+		}
+		double get_perimeter() const
+		{
+			return lenght_side_a + lenght_side_b + hypotenuse;
+		}
+		void draw() const
+		{
+
+		}
+		void info() const
+		{
+
+		}
+	};
 }
 void main()
 {
@@ -331,4 +452,7 @@ void main()
 	circle.info();
 	Geometry::EquilaterallTriangle EQ_triangle(10, Geometry::Color::purple, 500, 280, 5);
 	EQ_triangle.info();
+	Geometry::IsoscaleTriangle IS_triangle(25, 50, Geometry::Color::yellow, 500, 550, 5);
+	IS_triangle.info();
+	Geometry::OrthogonalTriangle OR_triangle(35, 55, Geometry::Color::red, 500, 950, 5);
 }
