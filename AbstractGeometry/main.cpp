@@ -7,6 +7,8 @@ namespace Geometry
 		red = 0x000000FF,
 		green = 0x0000FF00,
 		blue = 0x00FF0000,
+		aquablue=0x00FFFF00,
+		purple = 0x00800080,
 		grey = 0x00AAAAAA,
 		yellow = 0x0000FFFF,
 		white = 0x00FFFFFF,
@@ -14,9 +16,9 @@ namespace Geometry
 	};
 	enum Limits
 	{
-		MIN_START_X = 100,
+		MIN_START_X = 300,
 		MAX_START_X = 1000,
-		MIN_START_Y = 100,
+		MIN_START_Y = 5,
 		MAX_START_Y = 800,
 		MIN_LINE_WIDTH = 1,
 		MAX_LINE_WIDTH = 30,
@@ -24,14 +26,14 @@ namespace Geometry
 		MIN_LENGHT = 20,
 		MAX_LENGHT = 1000
 	};
-#define SHAPE_TAKE_PARAM Color color, int start_x, int start_y, int line_widht
+#define SHAPE_TAKE_PARAM Color color, double start_x, double start_y, int line_widht
 #define SHAPE_GIVE_PARAM color, start_x, start_y, line_widht
 	class Shape
 	{
 	protected:
 		Color color;
-		int start_x;
-		int line_width;
+		double start_x;
+		double start_y;
 		int line_width;
 
 	public:
@@ -98,7 +100,8 @@ namespace Geometry
 	public:
 		Rectangle(double width, double lenght, SHAPE_TAKE_PARAM) : Shape(SHAPE_GIVE_PARAM)
 		{
-	
+			set_lenght(lenght);
+			set_width(width);
 		}
 		~Rectangle() {}
 		void set_width(double width)
@@ -249,18 +252,32 @@ namespace Geometry
 	};
 	class Triangle :public Shape
 	{
-
+	public:
+		Triangle(SHAPE_TAKE_PARAM) :Shape(SHAPE_GIVE_PARAM) {};
+		~Triangle() {};
+		virtual double get_height() const = 0;
+		void info() const
+		{
+			cout << "Высота треугольника: " << get_height() << endl;
+			Shape::info();
+		}
 	};
 
 	class EquilaterallTriangle :public Triangle
 	{
 		double lenght_side;
 	public:
-		EquilaterallTriangle(double lenght_side, SHAPE_TAKE_PARAM) : Shape(SHAPE_GIVE_PARAM)
+		EquilaterallTriangle(double lenght_side, SHAPE_TAKE_PARAM) : Triangle(SHAPE_GIVE_PARAM)
 		{
-			this->lenght_side = lenght_side;
+			set_lenght_side(lenght_side);
 		}
 		~EquilaterallTriangle() {}
+		void set_lenght_side(double lenght_side)
+		{
+			if (lenght_side < Limits::MIN_LENGHT) lenght_side = Limits::MIN_LENGHT;
+			if (lenght_side > Limits::MAX_LENGHT) lenght_side = Limits::MAX_LENGHT;
+			this->lenght_side = lenght_side;
+		}
 		double get_lenght_side() const
 		{
 			return lenght_side;
@@ -306,12 +323,12 @@ namespace Geometry
 void main()
 {
 	setlocale(LC_ALL, "");
-	Geometry::Square square(5);
+	Geometry::Square square(10, Geometry::Color::blue, 500, 5, 5);
 	square.info();
-	Geometry::Rectangle rect(25, 15);
+	Geometry::Rectangle rect(25, 15, Geometry::Color::green, 500, 80, 5);
 	rect.info();
-	Geometry::Halo circle(10);
+	Geometry::Halo circle(10, Geometry::Color::aquablue, 500, 150, 5);
 	circle.info();
-	Geometry::Triangle triangle(10);
-	triangle.info();
+	Geometry::EquilaterallTriangle EQ_triangle(10, Geometry::Color::purple, 500, 280, 5);
+	EQ_triangle.info();
 }
