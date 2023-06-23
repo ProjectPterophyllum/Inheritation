@@ -406,7 +406,6 @@ namespace Geometry
 				<< "Высота треугольника: " << get_height()
 				<< endl;
 			Shape::info();
-			Shape::draw(::Polygon, lenght_side_a, lenght_side_b, get_height(), line_width, color);
 		}
 	};
 }
@@ -423,6 +422,6 @@ void main()
 	EQ_triangle.info();
 	Geometry::IsoscaleTriangle IS_triangle(100, 150, Geometry::Color::yellow, 500, 380, 5);
 	IS_triangle.info();
-	Geometry::OrthogonalTriangle OR_triangle(100, 140, Geometry::Color::red, 500, 500, 5);
+	Geometry::OrthogonalTriangle OR_triangle(100, 100, Geometry::Color::red, 500, 480, 5);
 	OR_triangle.info();
 }
