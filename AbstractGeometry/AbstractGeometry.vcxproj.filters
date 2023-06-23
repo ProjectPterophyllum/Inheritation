@@ -31,5 +31,8 @@
     <Image Include="img\JustForFun.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="img\OutputReworked.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
